@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aadarsh Pani Puri Center – Authentic Street Food in Wadhwan</title>
+  <meta name="description"
+    content="Order authentic pani puri, dahi puri, bhel and more from Aadarsh Pani Puri Center, Wadhwan. Fresh ingredients, authentic taste, fast service." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #ff6a00;
+      --primary-dark: #e05c00;
+      --primary-light: #ff8c38;
+      --bg: #fff7ed;
+      --bg2: #fff3e4;
+      --dark: #1a0a00;
+      --text: #3a2010;
+      --muted: #9a7060;
+      --card-bg: #ffffff;
+      --glass: rgba(255, 255, 255, 0.85);
+      --shadow: 0 8px 32px rgba(255, 106, 0, 0.10);
+      --shadow-hover: 0 20px 48px rgba(255, 106, 0, 0.22);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 106, 0, 0.12);
+      box-shadow: 0 2px 24px rgba(255, 106, 0, 0.08);
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 30px rgba(255, 106, 0, 0.15);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav-logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ff6a00, #ffb347);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 14px rgba(255, 106, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      padding-bottom: 3px;
+      transition: color 0.25s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cart {
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 16px rgba(255, 106, 0, 0.38);
+      transition: var(--transition);
+    }
+
+    .nav-cart:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(255, 106, 0, 0.45);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      background: var(--dark);
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #fff;
+      transition: transform 0.25s;
+    }
+
+    .cart-badge.bump {
+      animation: bump 0.4s ease;
+    }
+
+    @keyframes bump {
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      40% {
+        transform: scale(1.45)
+      }
+    }
+
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      border: none;
+      background: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2.5px;
+      background: var(--primary);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .hamburger.open span:nth-child(1) {
+      transform: translateY(7.5px) rotate(45deg);
+    }
+
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open span:nth-child(3) {
+      transform: translateY(-7.5px) rotate(-45deg);
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      padding: 18px 5% 24px;
+      border-bottom: 1px solid rgba(255, 106, 0, 0.12);
+      gap: 4px;
+    }
+
+    .mobile-nav.open {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255, 106, 0, 0.08);
+    }
+
+    .mobile-nav a:last-child {
+      border-bottom: none;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://tse4.mm.bing.net/th/id/OIP.8NQlwLr0AnVP-3h-_aI9GwHaEK?pid=Api&P=0&h=180') center/cover no-repeat;
+      transform: scale(1.06);
+      transition: transform 8s ease-out;
+    }
+
+    .hero-bg.loaded {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(26, 10, 0, 0.75) 0%, rgba(255, 106, 0, 0.22) 60%, rgba(26, 10, 0, 0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 5%;
+      max-width: 820px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroFadeIn 1.1s 0.3s ease forwards;
+    }
+
+    @keyframes heroFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 106, 0, 0.22);
+      border: 1px solid rgba(255, 106, 0, 0.45);
+      backdrop-filter: blur(8px);
+      color: #ffb347;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.12;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 span {
+      color: #ffb347;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.5vw, 1.22rem);
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(255, 106, 0, 0.5);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 12px 32px rgba(255, 106, 0, 0.55);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 2px solid rgba(255, 255, 255, 0.75);
+      color: #fff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      backdrop-filter: blur(6px);
+      transition: var(--transition);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-3px);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.75rem;
+      animation: float 2.4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0)
+      }
+
+      50% {
+        transform: translateX(-50%) translateY(-8px)
+      }
+    }
+
+    .hero-scroll-line {
+      width: 1.5px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), transparent);
+    }
+
+    /* ── SECTION COMMONS ── */
+    section {
+      padding: 90px 5%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.7rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.04rem;
+      margin-top: 12px;
+      max-width: 520px;
+      margin-inline: auto;
+    }
+
+    .underline-deco {
+      display: inline-block;
+      margin-top: 14px;
+      width: 64px;
+      height: 4px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--primary), #ffb347);
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      background: var(--bg2);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 26px;
+    }
+
+    .feature-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 38px 28px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 106, 0, 0.07);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .feature-card.visible {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .feature-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #fff7ed, #ffe8cc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.9rem;
+      margin: 0 auto 20px;
+      border: 2px solid rgba(255, 106, 0, 0.12);
+      transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon {
+      background: linear-gradient(135deg, #ff6a00, #ffb347);
+      transform: scale(1.12);
+    }
+
+    .feature-icon i {
+      transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon i {
+      color: #fff !important;
+    }
+
+    .feature-icon i {
+      color: var(--primary);
+    }
+
+    .feature-card h3 {
+      font-size: 1.08rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .feature-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── MENU ── */
+    .menu {
+      background: var(--bg);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .menu-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 106, 0, 0.07);
+      transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-card.visible {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .menu-img-wrap {
+      position: relative;
+      overflow: hidden;
+      height: 210px;
+    }
+
+    .menu-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-card:hover .menu-img-wrap img {
+      transform: scale(1.12);
+    }
+
+    .menu-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 13px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+    }
+
+    .menu-veg {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      border: 2px solid #5cb85c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+    }
+
+    .menu-veg-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #5cb85c;
+    }
+
+    .menu-body {
+      padding: 20px 22px 22px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .menu-name {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .menu-desc {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .menu-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .menu-price {
+      font-size: 1.32rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .menu-price span {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .btn-add {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--primary);
+      color: #fff;
+      padding: 11px 20px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 4px 14px rgba(255, 106, 0, 0.35);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-add:hover {
+      background: var(--primary-dark);
+      transform: scale(1.06);
+      box-shadow: 0 8px 22px rgba(255, 106, 0, 0.45);
+    }
+
+    .btn-add:active {
+      transform: scale(0.97);
+    }
+
+    /* Ripple */
+    .ripple-effect {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.38);
+      transform: scale(0);
+      animation: ripple 0.5s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 24px;
+      background: var(--dark);
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.22);
+      max-width: 320px;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .toast-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 56px 5% 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-col h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-col ul li a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.87rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--primary-light);
+    }
+
+    .footer-col address {
+      font-style: normal;
+      font-size: 0.87rem;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-address-icon {
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .footer-bottom a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      section {
+        padding: 64px 5%;
+      }
+    }
+
+    @media(max-width:480px) {
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🍡</div>
+      <span>Aadarsh Pani Puri</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#features">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="cart.html" class="nav-cart" id="cartLink">
+      <i class="fas fa-shopping-cart"></i>
+      Cart
+      <span class="cart-badge" id="cartCount">0</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#menu" onclick="closeMobileNav()">🍡 Menu</a>
+    <a href="#features" onclick="closeMobileNav()">ℹ️ About</a>
+    <a href="#contact" onclick="closeMobileNav()">📍 Contact</a>
+    <a href="cart.html">🛒 Cart (<span id="mobileCartCount">0</span>)</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="fas fa-star"></i> #1 Street Food in Wadhwan</div>
+      <h1>Aadarsh <span>Pani Puri</span> Center</h1>
+      <p>Authentic Street Food Taste in Wadhwan<br>Crispy, tangy, and bursting with flavour since day one.</p>
+      <div class="hero-btns">
+        <a href="#menu" class="btn-primary"><i class="fas fa-utensils"></i> View Menu</a>
+        <a href="cart.html" class="btn-outline"><i class="fas fa-shopping-bag"></i> Order Now</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+      <i class="fas fa-chevron-down" style="font-size:0.75rem;"></i>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <span class="section-eyebrow">Why Choose Us</span>
+      <h2>What Makes Us Special</h2>
+      <p>Every bite is crafted with love, freshness, and generations of street food wisdom.</p>
+      <div class="underline-deco"></div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" data-delay="0">
+        <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+        <h3>Fresh Ingredients</h3>
+        <p>We source only the freshest vegetables, herbs, and chutneys prepared daily.</p>
+      </div>
+      <div class="feature-card" data-delay="120">
+        <div class="feature-icon"><i class="fas fa-fire-flame-curved"></i></div>
+        <h3>Authentic Taste</h3>
+        <p>Traditional recipes passed down with the true flavour of Indian street food.</p>
+      </div>
+      <div class="feature-card" data-delay="240">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Fast Service</h3>
+        <p>Quick preparation and speedy WhatsApp ordering — no waiting, just eating!</p>
+      </div>
+      <div class="feature-card" data-delay="360">
+        <div class="feature-icon"><i class="fas fa-heart"></i></div>
+        <h3>Local Favourite</h3>
+        <p>Beloved by the people of Wadhwan for our unmatched quality and taste.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="section-header">
+      <span class="section-eyebrow">Our Menu</span>
+      <h2>Fresh From the Street</h2>
+      <p>Handcrafted street food delicacies — order your favourites directly via WhatsApp.</p>
+      <div class="underline-deco"></div>
+    </div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>🍡 Aadarsh Pani Puri Center</h3>
+        <p>Serving authentic street food with love in the heart of Wadhwan. Every puri tells a story.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="cart.html">Cart</a></li>
+          <li><a href="checkout.html">Checkout</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <address>
+          <i class="fas fa-map-marker-alt footer-address-icon"></i>Dholipol Chandan Chowk<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Wadhwan, Surendranagar<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Gujarat – 363030<br><br>
+          <i class="fas fa-phone footer-address-icon"></i>+91 87807 56702
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Aadarsh Pani Puri Center. All rights reserved.</p>
+      <p>Created by <a href="#">@shaifinn</a></p>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle toast-icon"></i>
+    <span id="toastMsg">Item added to cart!</span>
+  </div>
+
+  <script>
+    // ── MENU DATA ──
+    const menuItems = [
+      {
+        id: 1,
+        name: 'Pani Puri',
+        desc: 'Crispy puris filled with spicy mint water, potatoes, and tangy chutneys.',
+        price: 30,
+        img: 'https://tse1.mm.bing.net/th/id/OIP.FlEc-VwbpvZk1a7ERO-kowHaE8?pid=Api&P=0&h=180',
+        badge: 'Bestseller'
+      },
+      {
+        id: 2,
+        name: 'Dahi Puri',
+        desc: 'Puris loaded with creamy dahi, sweet tamarind chutney, and spicy sev.',
+        price: 50,
+        img: 'https://tse3.mm.bing.net/th/id/OIP.mdItt7ldEM5bxDYrTzLAGgHaE8?pid=Api&P=0&h=180',
+        badge: 'Popular'
+      },
+      {
+        id: 3,
+        name: 'Ragda Puri',
+        desc: 'Puris topped with spiced white peas (ragda), chutneys, and crispy sev.',
+        price: 40,
+        img: 'https://i.ytimg.com/vi/4S1fNFbZv9Y/maxresdefault.jpg',
+        badge: 'Must Try'
+      },
+      {
+        id: 4,
+        name: 'Bhel',
+        desc: 'Crunchy puffed rice tossed with onions, tomatoes, chutneys, and sev.',
+        price: 50,
+        img: 'https://tse2.mm.bing.net/th/id/OIP.IaywN85qzwpzBmCJDCyYCAHaEK?pid=Api&P=0&h=180',
+        badge: null
+      },
+      {
+        id: 5,
+        name: 'Special Bhel',
+        desc: 'Our signature bhel with extra toppings, special chutney, and pomegranate seeds.',
+        price: 80,
+        img: 'https://tse2.mm.bing.net/th/id/OIP.syrx_rdvIuTVleYDF1gNEAHaHa?pid=Api&P=0&h=180',
+        badge: 'Chef\'s Special'
+      }
+    ];
+
+    // ── CART ──
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem('apc_cart')) || []; }
+      catch { return []; }
+    }
+    function saveCart(cart) { localStorage.setItem('apc_cart', JSON.stringify(cart)); }
+    function getCartCount() { return getCart().reduce((s, i) => s + i.qty, 0); }
+
+    function updateCartBadge() {
+      const count = getCartCount();
+      ['cartCount', 'mobileCartCount'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) { el.textContent = count; el.classList.remove('bump'); void el.offsetWidth; if (count > 0) el.classList.add('bump'); }
+      });
+    }
+
+    function addToCart(item, btn) {
+      // Ripple
+      const rect = btn.getBoundingClientRect();
+      const r = document.createElement('span');
+      r.className = 'ripple-effect';
+      const size = Math.max(btn.offsetWidth, btn.offsetHeight);
+      r.style.cssText = `width:${size}px;height:${size}px;left:${(btn.offsetWidth - size) / 2}px;top:${(btn.offsetHeight - size) / 2}px`;
+      btn.appendChild(r); setTimeout(() => r.remove(), 600);
+
+      const cart = getCart();
+      const existing = cart.find(c => c.id === item.id);
+      if (existing) existing.qty++;
+      else cart.push({ ...item, qty: 1 });
+      saveCart(cart);
+      updateCartBadge();
+      showToast(`${item.name} added to cart!`);
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      clearTimeout(t._timer);
+      t._timer = setTimeout(() => t.classList.remove('show'), 2800);
+    }
+
+    // ── RENDER MENU ──
+    function renderMenu() {
+      const grid = document.getElementById('menuGrid');
+      grid.innerHTML = menuItems.map((item, i) => `
+      <div class="menu-card" id="mc-${item.id}" style="animation-delay:${i * 90}ms">
+        <div class="menu-img-wrap">
+          <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&auto=format&fit=crop&q=80'" />
+          ${item.badge ? `<span class="menu-badge">${item.badge}</span>` : ''}
+          <div class="menu-veg"><div class="menu-veg-dot"></div></div>
+        </div>
+        <div class="menu-body">
+          <div class="menu-name">${item.name}</div>
+          <div class="menu-desc">${item.desc}</div>
+          <div class="menu-footer">
+            <div class="menu-price">₹${item.price} <span>per plate</span></div>
+            <button class="btn-add" onclick="addToCart(menuItems[${i}], this)">
+              <i class="fas fa-plus"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    }
+
+    // ── SCROLL ANIMATIONS ──
+    function observeCards() {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const delay = e.target.dataset.delay ? parseInt(e.target.dataset.delay) : 0;
+            setTimeout(() => e.target.classList.add('visible'), delay);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.feature-card, .menu-card').forEach(el => observer.observe(el));
+    }
+
+    // ── NAVBAR SCROLL ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ── HAMBURGER ──
+    document.getElementById('hamburger').addEventListener('click', function () {
+      this.classList.toggle('open');
+      document.getElementById('mobileNav').classList.toggle('open');
+    });
+    function closeMobileNav() {
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('mobileNav').classList.remove('open');
+    }
+
+    // ── HERO BG LOADED ──
+    window.addEventListener('load', () => {
+      document.getElementById('heroBg').classList.add('loaded');
+    });
+
+    // ── INIT ──
+    renderMenu();
+    updateCartBadge();
+    setTimeout(observeCards, 100);
+  </script>
+</body>
+
+</html>
